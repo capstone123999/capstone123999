@@ -17,7 +17,7 @@
         android:orientation="vertical"
         android:layout_weight="1">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/teenagerMainMyPageImage"
             android:layout_width="87dp"
             android:layout_height="92dp"
@@ -25,8 +25,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/mypage" />
-
+            android:src="@drawable/mypage"
+            app:srcCompat="@drawable/mypage" />
 
 
         <LinearLayout

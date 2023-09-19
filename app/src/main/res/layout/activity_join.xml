@@ -13,9 +13,11 @@
 
     <TextView
         android:id="@+id/joinText"
+
         android:layout_marginBottom="30dp"
         android:layout_width="200dp"
         android:layout_height="50dp"
+
         android:text="회원가입"
         android:textAlignment="center"
         android:textStyle="bold"
@@ -24,13 +26,17 @@
 
 
     <LinearLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/nameText"
             android:layout_width="wrap_content"
+
             android:layout_height="30dp"
+
+
             android:text="이름"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -39,12 +45,14 @@
 
         <EditText
             android:id="@+id/name"
+
             android:background="@drawable/border"
             android:layout_marginLeft="30dp"
             android:layout_width="250dp"
             android:layout_height="30dp"
+
             android:hint="이름을 입력해주세요"
-            android:textAlignment="center" />
+            android:textAlignment="center"  />
 
     </LinearLayout>
 
@@ -66,7 +74,9 @@
         <Spinner
             android:id="@+id/genderChoice"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+
+            android:layout_height="42dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.493"
@@ -101,6 +111,7 @@
             <EditText
                 android:id="@+id/num1"
                 android:layout_width="135dp"
+
                 android:background="@drawable/border"
                 android:layout_height="wrap_content"
                 android:hint="앞번호"
@@ -192,7 +203,7 @@
 
 
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

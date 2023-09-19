@@ -12,13 +12,26 @@
         android:theme="@style/Theme.Capstone"
         tools:targetApi="31">
         <activity
-            android:name=".SubmitNest"
-            android:exported="false" />
-        <activity
             android:name=".FindNest"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:usesCleartextTraffic="true"
+            tools:targetApi="31"/>
+        <activity
+            android:name=".ManagerEmergencyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ManagerNotifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ManagerNestSubmitActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ManagerNestMatchResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SubmitNest"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,5 +40,10 @@
             </intent-filter>
         </activity>
     </application>
+
+
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
