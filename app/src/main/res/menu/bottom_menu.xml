@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/nest"
+        android:title="보금자리"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/emergency"
+        android:enabled="true"
+        android:icon="@drawable/notify"
+        android:title="일반신고"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/info"
+        android:enabled="true"
+        android:icon="@drawable/emergency"
+        android:title="긴급신고"
+        app:showAsAction="ifRoom"/>
+</menu>
