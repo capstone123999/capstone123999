@@ -44,7 +44,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="보금자리 찾기 깃허브" />
+                android:text="보금자리 찾기" />
 
             <Button
                 android:id="@+id/teenagerMainNotify"
