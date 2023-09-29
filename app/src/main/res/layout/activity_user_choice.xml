@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/TeenagerButton"
+            android:background="@drawable/border_bold"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="170dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="280dp"
+            android:text="청소년"
+            android:textColor="@color/black"
+            android:textSize="35dp"
+            android:backgroundTint="#80D9FB"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/LenderButton"
+            android:background="@drawable/border_bold"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:backgroundTint="#80D9FB"
+            android:layout_width="170dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="280dp"
+            android:text="대여자"
+            android:textColor="@color/black"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
