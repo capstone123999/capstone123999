@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Capstone</string>
+    <string name="kakao_app_key">4789a403431c8f9cd086dc95c5f983c4</string>
 </resources>
