@@ -1,4 +1,5 @@
 package com.example.capstone;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,9 +15,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
-    private static final String KAKAO_API_KEY = "da2485be6d69daa44fdccdf310bd2e41";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

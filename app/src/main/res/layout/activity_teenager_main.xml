@@ -25,8 +25,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/mypage"
-            app:srcCompat="@drawable/mypage" />
+            android:src="@drawable/mypage" />
+
 
 
         <LinearLayout
@@ -44,7 +44,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="보금자리 찾기" />
+                android:text="보금자리 찾기 깃허브" />
 
             <Button
                 android:id="@+id/teenagerMainNotify"

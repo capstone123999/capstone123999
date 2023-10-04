@@ -21,6 +21,7 @@
             android:layout_width="190dp"
             android:layout_height="190dp"
             app:srcCompat="@drawable/user" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -37,23 +38,6 @@
             android:hint="아이디를 입력해주세요"
             android:inputType="text"
             android:paddingLeft="10dp"
-        android:layout_marginTop="50dp"/>
-
-        <TextView
-            android:id="@+id/loginIdText"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:text="ID"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:textSize="20dp"/>
-
-        <EditText
-            android:id="@+id/loginId2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="                                       "
             android:textAlignment="center" />
 
     </LinearLayout>
@@ -73,23 +57,6 @@
             android:background="@drawable/border"
             android:textAlignment="center" />
     </LinearLayout>
-
-        <TextView
-            android:id="@+id/loginPwText"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:text="PW"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:textSize="20dp"/>
-
-        <EditText
-            android:id="@+id/loginPw2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="                                       "
-            android:textAlignment="center" />
 
     <Button
         android:id="@+id/loginButton"
@@ -117,11 +84,24 @@
             android:layout_weight="1"
             android:textSize="15dp"
             android:text="자동 로그인 기능" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="150dp">
+
+        <Button
+            android:id="@+id/joinButton"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="회원가입"
+            android:layout_marginTop="100dp"
+            android:textSize="15dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:backgroundTint="@color/white" />
 
         <Button
             android:id="@+id/PwFindButton"
@@ -137,14 +117,6 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_marginTop="20dp"
-        android:id="@+id/joinButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:text="회원가입"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:backgroundTint="@color/white" />
+
+
 </LinearLayout>

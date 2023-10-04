@@ -23,24 +23,18 @@ import java.util.Map;
 /***
  * '보금자리 등록' 기능.
  * 1.신청받을 보금자리의 정보 입력 받음
-<<<<<<< HEAD
-=======
  * 2.입력받은 정보 DB에 저장
->>>>>>> e55f6a0 (First commit)
  */
 
 public class SubmitNest extends AppCompatActivity {
 
-
     private EditText addressEditText;
     private Button saveButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nest_submit);
-
 
         // XML 레이아웃에서 필요한 뷰 요소들을 찾습니다.
         addressEditText = findViewById(R.id.submitNestAddressMore);
@@ -116,6 +110,5 @@ public class SubmitNest extends AppCompatActivity {
             // 저장 결과를 처리하거나 사용자에게 메시지를 표시합니다.
             Toast.makeText(SubmitNest.this, result, Toast.LENGTH_SHORT).show();
         }
-
     }
 }
