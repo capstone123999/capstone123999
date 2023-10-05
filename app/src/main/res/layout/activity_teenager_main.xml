@@ -17,7 +17,7 @@
         android:orientation="vertical"
         android:layout_weight="1">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/teenagerMainMyPageImage"
             android:layout_width="87dp"
             android:layout_height="92dp"
@@ -44,7 +44,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="보금자리 찾기 깃허브" />
+                android:text="보금자리 찾기" />
 
             <Button
                 android:id="@+id/teenagerMainNotify"
