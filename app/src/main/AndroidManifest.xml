@@ -18,8 +18,6 @@
         <activity
             android:name=".MyPage" />
         <activity
-            android:name=".AccountButton"/>
-        <activity
             android:name=".SubmitNest"
             android:exported="false" />
         <activity
