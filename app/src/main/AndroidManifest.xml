@@ -18,13 +18,14 @@
         <activity
             android:name=".MyPage" />
         <activity
-            android:name=".AccountButton"/>
-        <activity
             android:name=".SubmitNest"
             android:exported="false" />
         <activity
             android:name=".FindNest"
             android:exported="false" />
+        <meta-data
+            android:name="com.kakao.vectormap.APP_KEY"
+            android:value="4789a403431c8f9cd086dc95c5f983c4"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
