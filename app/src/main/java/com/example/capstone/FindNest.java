@@ -2,7 +2,10 @@ package com.example.capstone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 /***
  * '보금자리 찾기' 기능.
@@ -15,5 +18,15 @@ public class FindNest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nest_find);
+
+        Button nestFindRegisterButton = findViewById(R.id.nestFindRegisterButton);
+        nestFindRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // activity_google_map으로 이동하는 인텐트 생성
+                Intent intent = new Intent(FindNest.this, Map.class);
+                startActivity(intent);
+            }
+        });
     }
 }

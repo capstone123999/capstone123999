@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,6 +40,16 @@ public class LenderMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LenderMainActivity.this, Notify.class);
                 startActivity(intent);
+            }
+        });
+        // MyPage 이미지 버튼 클릭 시 이벤트 처리
+        ImageButton lenderMainMyPageImage = findViewById(R.id.lenderMainMyPageImage);
+        lenderMainMyPageImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LenderMainActivity.this, MyPage.class);
+                startActivity(intent);
+
             }
         });
     }

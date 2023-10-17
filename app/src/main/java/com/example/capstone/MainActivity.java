@@ -13,40 +13,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teenager_main);
+        setContentView(R.layout.activity_user_choice);
 
-        Button teenagerMainEmergency = findViewById(R.id.teenagerMainEmergency);
-        teenagerMainEmergency.setOnClickListener(new View.OnClickListener() {
+        //청소년 버튼 클릭 시 이벤트 처리
+        Button TeenagerButton = findViewById(R.id.TeenagerButton);
+        TeenagerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Emergency.class);
+                Intent intent = new Intent(MainActivity.this, TeenagerMainActivity.class);
                 startActivity(intent);
             }
         });
 
-        Button teenagerMainNotify = findViewById(R.id.teenagerMainNotify);
-        teenagerMainNotify.setOnClickListener(new View.OnClickListener() {
+        // 대여자 버튼 클릭 시 이벤트 처리
+        Button LenderButton = findViewById(R.id.LenderButton);
+        LenderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Notify.class);
-                startActivity(intent);
-            }
-        });
-
-        Button teenagerMainNestFind = findViewById(R.id.teenagerMainNestFind);
-        teenagerMainNestFind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FindNest.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton teenagerMainMyPageImage = findViewById(R.id.teenagerMainMyPageImage);
-        teenagerMainMyPageImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyPage.class);
+                Intent intent = new Intent(MainActivity.this, LenderMainActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,13 +13,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ManagerEmergency"
-            android:exported="false" />
-
-        <activity android:name=".Emergency" />
-
-        <activity android:name=".Notify" />
-        <activity android:name=".MyPage" />
+            android:name=".Emergency" />
+        <activity
+            android:name=".Notify" />
+        <activity
+            android:name=".MyPage" />
+        <activity
+            android:name=".FindNest"/>
+        <activity
+            android:name=".TeenagerMainActivity"/>
         <activity
             android:name=".SubmitNest"
             android:exported="true">
@@ -30,17 +32,35 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".FindNest"
-            android:exported="false" />
+            android:name=".Map"/>
+        <activity
+            android:name=".ManagerEmergency"/>
+        <activity
+            android:name=".ManagerNotify"/>
+        <activity
+            android:name=".ManagerMain"/>
+        <activity
+            android:name=".ManagerNestMatchResultActivity"/>
+        <activity
+            android:name=".ManagerNestSubmitActivity"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyArF-OCNkKXjd_nH484fi6WLS6msuPMf3o"/>
+        <meta-data
+            android:name="com.kakao.vectormap.APP_KEY"
+            android:value="4789a403431c8f9cd086dc95c5f983c4"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".AddressActivity" />
-        <meta-data
-            android:name="com.kakao.vectormap.APP_KEY"
-            android:value="4789a403431c8f9cd086dc95c5f983c4" />
     </application>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
