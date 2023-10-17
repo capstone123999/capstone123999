@@ -31,11 +31,11 @@ import java.util.Map;
 
 public class SubmitNest extends AppCompatActivity {
 
-    private EditText addressEditText;
-    private Button saveButton;
+    EditText addressEditText;
+    Button saveButton;
     // Define a private field for the ActivityResultLauncher
-    private ActivityResultLauncher<Intent> addressActivityResultLauncher;
-    private EditText submitNestAddress;
+    ActivityResultLauncher<Intent> addressActivityResultLauncher;
+    EditText submitNestAddress;
 
 
     @Override
@@ -98,7 +98,7 @@ public class SubmitNest extends AppCompatActivity {
             }
         }
     }
-
+/*
     private class SaveAddressTask extends AsyncTask<String, Void, String> {
 
 
@@ -156,7 +156,6 @@ public class SubmitNest extends AppCompatActivity {
             // 저장 결과를 처리하거나 사용자에게 메시지를 표시합니다.
             Toast.makeText(SubmitNest.this, result, Toast.LENGTH_SHORT).show();
         }
-
-
     }
+    */
 }
