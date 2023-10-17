@@ -123,7 +123,7 @@ public class SubmitNest extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             // 에러 발생 시 에러 메시지를 result 배열에 저장
-                            result[0] = /*"서버 응답 오류: " +*/ error.getMessage();
+                            result[0] = /*"서버 응답 오류: " +*/ /*error.getMessage();
                         }
                     }) {
                 @Override
