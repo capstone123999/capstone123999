@@ -1,8 +1,11 @@
 package com.example.capstone;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.AsyncTask;
 import android.view.View;
@@ -30,12 +33,41 @@ public class SubmitNest extends AppCompatActivity {
 
     private EditText addressEditText;
     private Button saveButton;
+    // Define a private field for the ActivityResultLauncher
+    private ActivityResultLauncher<Intent> addressActivityResultLauncher;
+    private EditText submitNestAddress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nest_submit);
 
+        // 버튼을 누르면 AddressActivity를 띄워주는 부분
+        Button submitNestAddressSearch = findViewById(R.id.submitNestAddressSearch);
+        addressActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == AddressActivity.ADDRESS_REQUEST_CODE) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            // Handle the result from AddressActivity here
+                            String address = data.getStringExtra("address");
+                            // Process the address as needed
+                        }
+                    }
+                }
+        );
+        submitNestAddressSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SubmitNest.this, AddressActivity.class);
+                addressActivityResultLauncher.launch(intent);
+            }
+        });
+
+
+/*
         // XML 레이아웃에서 필요한 뷰 요소들을 찾습니다.
         addressEditText = findViewById(R.id.submitNestAddressMore);
         saveButton = findViewById(R.id.submitNestButton);
@@ -50,7 +82,21 @@ public class SubmitNest extends AppCompatActivity {
                 // AsyncTask를 사용하여 주소를 저장합니다.
                 new SaveAddressTask().execute(managerAddress);
             }
-        });
+        });*/
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == AddressActivity.ADDRESS_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // 주소를 가져와서 보여주는 부분
+                String addressData = data != null ? data.getStringExtra("address") : null;
+                submitNestAddress.setText(addressData);
+            }
+        }
     }
 
     private class SaveAddressTask extends AsyncTask<String, Void, String> {
@@ -110,5 +156,7 @@ public class SubmitNest extends AppCompatActivity {
             // 저장 결과를 처리하거나 사용자에게 메시지를 표시합니다.
             Toast.makeText(SubmitNest.this, result, Toast.LENGTH_SHORT).show();
         }
+
+
     }
 }

@@ -22,19 +22,24 @@
         <activity android:name=".MyPage" />
         <activity
             android:name=".SubmitNest"
-            android:exported="false" />
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".FindNest"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".AddressActivity" />
+        <meta-data
+            android:name="com.kakao.vectormap.APP_KEY"
+            android:value="4789a403431c8f9cd086dc95c5f983c4" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
