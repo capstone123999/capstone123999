@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-feature android:required="true" android:glEsVersion="0x00020000"/>
+    <uses-permission android:name="com.example.capstone.permission.MAPS_RECEIVE" android:label="signature"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <meta-data android:name="com.google.android.gms.version"    android:value="12451000"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -18,11 +28,28 @@
         <activity
             android:name=".MyPage" />
         <activity
-            android:name=".SubmitNest"
-            android:exported="false" />
+            android:name=".SubmitNest" />
         <activity
-            android:name=".FindNest"
-            android:exported="false" />
+            android:name=".FindNest"/>
+        <activity
+            android:name=".TeenagerMainActivity"/>
+        <activity
+            android:name=".LenderMainActivity"/>
+        <activity
+            android:name=".Map"/>
+        <activity
+            android:name=".ManagerEmergency"/>
+        <activity
+            android:name=".ManagerNotify"/>
+        <activity
+            android:name=".ManagerMain"/>
+        <activity
+            android:name=".ManagerNestMatchResultActivity"/>
+        <activity
+            android:name=".ManagerNestSubmitActivity"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyArF-OCNkKXjd_nH484fi6WLS6msuPMf3o"/>
         <meta-data
             android:name="com.kakao.vectormap.APP_KEY"
             android:value="4789a403431c8f9cd086dc95c5f983c4"/>
