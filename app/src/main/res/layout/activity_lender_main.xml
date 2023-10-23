@@ -12,20 +12,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_gravity="center"
+        android:gravity="right"
         android:orientation="vertical"
         android:layout_weight="1">
 
-        <ImageButton
-            android:id="@+id/lenderMainMyPageImage"
-            android:layout_width="87dp"
-            android:layout_height="92dp"
-            android:layout_gravity="right"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/mypage" />
+        <ImageView
+            android:id="@+id/UserImage"
+            android:layout_margin="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/user" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,6 +39,8 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
+                android:background="@drawable/border_bold"
+                android:backgroundTint="#80D9FB"
                 android:text="보금자리 등록" />
 
             <Button
@@ -52,6 +51,8 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
+                android:background="@drawable/border_bold"
+                android:backgroundTint="#80D9FB"
                 android:text="일반신고" />
 
             <Button
@@ -62,6 +63,9 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
+                android:background="@drawable/border_bold"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="#80D9FB"
                 android:text="긴급신고" />
 
         </LinearLayout>

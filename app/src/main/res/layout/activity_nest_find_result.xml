@@ -13,38 +13,40 @@
 
     <TextView
         android:id="@+id/findSuccess"
-        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_width="370dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:text="배치 완료되었습니다"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="148dp"
-        android:textSize="35dp"
-        android:layout_marginTop="50dp"
+        android:textColor="@color/black"
+        android:text="배치 완료"
+        android:textSize="45dp"
         android:layout_marginBottom="50dp"
         />
 
     <ImageView
         android:id="@+id/findSuccessImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="203dp"
+        android:layout_height="223dp"
         app:srcCompat="@drawable/nest" />
 
     <TextView
         android:id="@+id/findSuccessText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="가까운 파출소를\n찾았습니다"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="148dp"
-        android:textAlignment="center"
-        android:textSize="35dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp" />
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:text="가까운 파출소를 찾았습니다"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="28dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="30dp" />
 
     <Button
         android:id="@+id/findSuccessButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:background="#80D9FB"
         android:text="OK" />
 </LinearLayout>

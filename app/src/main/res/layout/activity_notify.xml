@@ -61,7 +61,6 @@
             android:layout_height="72dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/border"
-            android:ems="10"
             android:text=""
             android:textAlignment="center" />
 
@@ -91,9 +90,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:textColor="@color/black"
+            android:textSize="25dp"
+            android:background="#80D9FB"
+            android:textStyle="bold"
             android:text="제출" />
     </LinearLayout>
 

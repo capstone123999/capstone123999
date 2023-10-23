@@ -20,28 +20,32 @@
         android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/mypageImage"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            app:srcCompat="@drawable/mypage" />
+            android:id="@+id/UserImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/user" />
 
         <Button
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:id="@+id/accountButton"
             android:layout_width="250dp"
             android:layout_height="71dp"
             android:textSize="25sp"
             android:textStyle="bold"
+            android:background="@drawable/border_button"
+            android:backgroundTint="#80D9FB"
             android:textColor="@color/black"
             android:text="계정정보" />
 
         <Button
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/deleteButton"
             android:layout_width="250dp"
             android:layout_height="71dp"
             android:textSize="25sp"
             android:textStyle="bold"
+            android:background="@drawable/border_button"
+            android:backgroundTint="#80D9FB"
             android:textColor="@color/black"
             android:text="탈퇴하기" />
     </LinearLayout>
@@ -59,5 +63,4 @@
             app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_menu" />
     </LinearLayout>
-
 </LinearLayout>

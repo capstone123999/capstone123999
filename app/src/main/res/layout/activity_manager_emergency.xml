@@ -27,15 +27,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/manager_next_submit_address_result"
             android:layout_width="match_parent"
+            android:background="@drawable/border"
             android:layout_height="500px" />
-    </LinearLayout>
 
+    </LinearLayout>
 
     <Button
         android:layout_marginTop="50dp"
@@ -45,6 +45,7 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="25dp"
+        android:background="#80D9FB"
         android:text="OK" />
 
 </LinearLayout>

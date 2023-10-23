@@ -27,24 +27,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/manager_next_submit_address_result"
             android:layout_width="match_parent"
+            android:background="@drawable/border"
             android:layout_height="500px" />
+
     </LinearLayout>
 
 
     <Button
-        android:layout_marginTop="50dp"
         android:id="@+id/joinRegisterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:text="OK"
         android:textColor="@color/black"
         android:textSize="25dp"
-        android:text="OK" />
+        android:background="#80D9FB"
+        android:textStyle="bold" />
 
 </LinearLayout>
