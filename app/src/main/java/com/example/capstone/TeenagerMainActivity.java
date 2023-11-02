@@ -45,7 +45,7 @@ public class TeenagerMainActivity extends AppCompatActivity {
         });
 
         // MyPage 이미지 버튼 클릭 시 이벤트 처리
-        ImageButton teenagerMainMyPageImage = findViewById(R.id.teenagerMainMyPageImage);
+        ImageButton teenagerMainMyPageImage = findViewById(R.id.UserImage);
         teenagerMainMyPageImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

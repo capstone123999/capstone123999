@@ -43,7 +43,7 @@ public class LenderMainActivity extends AppCompatActivity {
             }
         });
         // MyPage 이미지 버튼 클릭 시 이벤트 처리
-        ImageButton lenderMainMyPageImage = findViewById(R.id.lenderMainMyPageImage);
+        ImageButton lenderMainMyPageImage = findViewById(R.id.UserImage);
         lenderMainMyPageImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
