@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -31,14 +32,17 @@ import java.util.Map;
  * '보금자리 등록' 기능.
  * 1.신청받을 보금자리의 정보 입력 받음
  * 2.입력받은 정보 DB에 저장
+ *
+ * 다음에 할 것 : 체크박스를 체크해도 값이 1이 안되는 현상 수정.
  */
 
 public class SubmitNest extends AppCompatActivity{
 
     // 초기변수설정
-    String spinnerChoice1, spinnerChoice2, spinnerChoice3;
-    String log = "log";
-    EditText edit_addr;
+    CheckBox checkbox1, checkbox2, checkbox3, checkbox4;
+    int roomSizeResult;
+    String spinnerChoice1, spinnerChoice2, spinnerChoice3, submitNestAddressMoreResult, submitNestAddressSearchResult, checkboxResult1,checkboxResult2,checkboxResult3, checkboxResult4;
+    EditText edit_addr, submitNestAddressMore, roomSize;
     Button submitNestAddressSearch;
     ArrayAdapter<String> adapter1, adapter2, adapter3= null;
     Spinner spinner1, spinner2, spinner3 = null;
@@ -53,18 +57,17 @@ public class SubmitNest extends AppCompatActivity{
         setContentView(R.layout.activity_nest_submit);
 
 
-        //submitNestButton 클릭시 이벤트 지정
-        Button submitNestButton = findViewById(R.id.submitNestButton);
-        submitNestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(SubmitNest.this, spinnerChoice1 + "," + spinnerChoice2 + ","+spinnerChoice3, Toast.LENGTH_LONG).show();
-            }
-        });
-
         // UI 요소 연결
         edit_addr = findViewById(R.id.submitNestAddress);
         submitNestAddressSearch = findViewById(R.id.submitNestAddressSearch);
+        submitNestAddressMore = findViewById(R.id.submitNestAddressMore);
+        roomSize = findViewById(R.id.roomSize);
+        checkbox1 = findViewById(R.id.serviceCheckbox1);
+        checkbox2 = findViewById(R.id.serviceCheckbox2);
+        checkbox3 = findViewById(R.id.serviceCheckbox3);
+        checkbox4 = findViewById(R.id.serviceCheckbox4);
+        //checkbox 부분 (체크시 1, 아닐시 0)
+
         //개월 수 선택 스피너
         adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         spinner1=findViewById(R.id.rentPeriod);
@@ -76,51 +79,6 @@ public class SubmitNest extends AppCompatActivity{
                 Intent monthIntent = new Intent();
                 spinnerChoice1=adapter1.getItem(i);
                 monthIntent.putExtra("hourIntent1", spinnerChoice1);
-                /*switch (position) {
-                    case 0:
-                        Toast.makeText(SubmitNest.this, "항목을 선택해주세요", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        monthIntent.putExtra("monthIntentData", items[1]);
-                        Log.d(log, "monthIntent값 : ");
-                        break;
-                    case 2:
-                        monthIntent.putExtra("monthIntentData", items[2]);
-                        break;
-                    case 3:
-                        monthIntent.putExtra("monthIntentData", items[3]);
-                        break;
-                    case 4:
-                        monthIntent.putExtra("monthIntentData", items[4]);
-                        break;
-                    case 5:
-                        monthIntent.putExtra("monthIntentData", items[5]);
-                        break;
-                    case 6:
-                        monthIntent.putExtra("monthIntentData", items[6]);
-                        break;
-                    case 7:
-                        monthIntent.putExtra("monthIntentData", items[7]);
-                        break;
-                    case 8:
-                        monthIntent.putExtra("monthIntentData", items[8]);
-                        break;
-                    case 9:
-                        monthIntent.putExtra("monthIntentData", items[9]);
-                        break;
-                    case 10:
-                        monthIntent.putExtra("monthIntentData", items[10]);
-                        break;
-                    case 11:
-                        monthIntent.putExtra("monthIntentData", items[11]);
-                        break;
-                    case 12:
-                        monthIntent.putExtra("monthIntentData", items[12]);
-                        break;
-                    default:
-                        Toast.makeText(SubmitNest.this, "항목을 선택해주세요", Toast.LENGTH_SHORT).show();
-                        break;
-                }*/
             }
 
             @Override
@@ -173,7 +131,7 @@ public class SubmitNest extends AppCompatActivity{
             public void onClick(View view) {
                 Log.i("주소설정페이지", "주소입력창 클릭");
                 int status = NetworkStatus.getConnectivityStatus(getApplicationContext());
-                if(status == NetworkStatus.TYPE_MOBILE || status == NetworkStatus.TYPE_WIFI) {
+                if (status == NetworkStatus.TYPE_MOBILE || status == NetworkStatus.TYPE_WIFI) {
 
                     Log.i("주소설정페이지", "주소입력창 클릭");
                     Intent i = new Intent(getApplicationContext(), AddressActivity.class);
@@ -182,11 +140,31 @@ public class SubmitNest extends AppCompatActivity{
                     // 주소결과
                     startActivityForResult(i, SEARCH_ADDRESS_ACTIVITY);
 
-                }else {
+                } else {
                     Toast.makeText(getApplicationContext(), "인터넷 연결을 확인해주세요.", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
 
+        //submitNestButton 클릭시 이벤트 지정
+        Button submitNestButton = findViewById(R.id.submitNestButton);
+        submitNestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //실평수 부분
+                try {
+                    roomSizeResult = Integer.parseInt(roomSize.getText().toString());
+                }catch (NumberFormatException e){
+                    Toast.makeText(SubmitNest.this, "실평수를 공백 없이 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
 
+                //상세 주소 부분
+                try {
+                    submitNestAddressMoreResult = submitNestAddressMore.getText().toString();
+                }catch (NumberFormatException e){
+                    Toast.makeText(SubmitNest.this, "상세 주소를 써주세요", Toast.LENGTH_SHORT).show();
+                }
+                Toast.makeText(SubmitNest.this, spinnerChoice1 + "," + spinnerChoice2 + ","+spinnerChoice3+ ","+roomSizeResult+ "," + checkboxResult1 + ","+checkboxResult2+ ","+checkboxResult3+","+checkboxResult4+","+submitNestAddressMoreResult + ","+submitNestAddressSearchResult , Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -202,7 +180,48 @@ public class SubmitNest extends AppCompatActivity{
                     if (data != null) {
                         Log.i("test", "data:" + data);
                         edit_addr.setText(data);
+                        submitNestAddressSearchResult = data;
                     }
+                }
+                break;
+        }
+    }
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.serviceCheckbox1:
+                if (checked) {
+                    checkboxResult1 = checkbox1.getText().toString();
+                }
+            else{
+                    Toast.makeText(this, "checkboxResult1의 값이 저장안됨", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.serviceCheckbox2:
+                if (checked){
+                    checkboxResult2 = checkbox2.getText().toString();
+                }
+            else{
+                    Toast.makeText(this, "checkboxResult2의 값이 저장안됨", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.serviceCheckbox3:
+                if (checked){
+                    checkboxResult3 = checkbox3.getText().toString();
+                }
+                else{
+                    Toast.makeText(this, "checkboxResult3의 값이 저장안됨", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.serviceCheckbox4:
+                if (checked){
+                    checkboxResult4 = checkbox4.getText().toString();
+                }
+                else{
+                    Toast.makeText(this, "checkboxResult4의 값이 저장안됨", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

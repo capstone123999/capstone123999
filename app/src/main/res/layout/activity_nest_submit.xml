@@ -99,7 +99,8 @@
 
         <Spinner
             android:id="@+id/rentPeriod"
-            android:layout_width="245dp"
+            android:background="@drawable/spinner_border_round"
+            android:layout_width="150dp"
             android:layout_height="30dp"
             android:layout_marginLeft="30dp"
             android:contentDescription="대여 기간 선택"
@@ -168,7 +169,8 @@
                 android:layout_height="35dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="에어컨" />
+                android:text="에어컨"
+                android:onClick="onCheckboxClicked"/>
 
             <CheckBox
                 android:layout_marginLeft="7dp"
@@ -178,7 +180,8 @@
                 android:id="@+id/serviceCheckbox2"
                 android:layout_width="73dp"
                 android:layout_height="35dp"
-                android:text="Wi-Fi" />
+                android:text="Wi-Fi"
+                android:onClick="onCheckboxClicked"/>
 
             <CheckBox
                 android:id="@+id/serviceCheckbox3"
@@ -188,7 +191,8 @@
                 android:gravity="center"
                 android:layout_width="95dp"
                 android:layout_height="35dp"
-                android:text="샤워 시설" />
+                android:text="샤워 시설"
+                android:onClick="onCheckboxClicked"/>
 
             <CheckBox
                 android:id="@+id/serviceCheckbox4"
@@ -198,7 +202,8 @@
                 android:gravity="center"
                 android:text="침구"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="onCheckboxClicked"/>
 
 
         </LinearLayout>
@@ -229,6 +234,7 @@
 
             <Spinner
                 android:id="@+id/callTime1"
+                android:background="@drawable/spinner_border_round"
                 android:layout_width="110dp"
                 android:layout_height="42dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -261,6 +267,7 @@
 
             <Spinner
                 android:id="@+id/callTime2"
+                android:background="@drawable/spinner_border_round"
                 android:layout_width="110dp"
                 android:layout_height="42dp"
                 app:layout_constraintBottom_toBottomOf="parent"
