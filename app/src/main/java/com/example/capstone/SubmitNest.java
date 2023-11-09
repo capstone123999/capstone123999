@@ -2,6 +2,7 @@ package com.example.capstone;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -24,9 +25,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.ContentValues.TAG;
 
 /***
  * '보금자리 등록' 기능.
@@ -66,7 +73,6 @@ public class SubmitNest extends AppCompatActivity{
         checkbox2 = findViewById(R.id.serviceCheckbox2);
         checkbox3 = findViewById(R.id.serviceCheckbox3);
         checkbox4 = findViewById(R.id.serviceCheckbox4);
-        //checkbox 부분 (체크시 1, 아닐시 0)
 
         //개월 수 선택 스피너
         adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
@@ -164,7 +170,8 @@ public class SubmitNest extends AppCompatActivity{
                 }catch (NumberFormatException e){
                     Toast.makeText(SubmitNest.this, "상세 주소를 써주세요", Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(SubmitNest.this, spinnerChoice1 + "," + spinnerChoice2 + ","+spinnerChoice3+ ","+roomSizeResult+ "," + checkboxResult1 + ","+checkboxResult2+ ","+checkboxResult3+","+checkboxResult4+","+submitNestAddressMoreResult + ","+submitNestAddressSearchResult , Toast.LENGTH_LONG).show();
+                //정보 db에 저장
+                saveSubmitNest();
             }
         });
     }
@@ -197,7 +204,7 @@ public class SubmitNest extends AppCompatActivity{
                     checkboxResult1 = checkbox1.getText().toString();
                 }
             else{
-                    Toast.makeText(this, "checkboxResult1의 값이 저장안됨", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 break;
             case R.id.serviceCheckbox2:
@@ -205,7 +212,7 @@ public class SubmitNest extends AppCompatActivity{
                     checkboxResult2 = checkbox2.getText().toString();
                 }
             else{
-                    Toast.makeText(this, "checkboxResult2의 값이 저장안됨", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 break;
             case R.id.serviceCheckbox3:
@@ -213,7 +220,7 @@ public class SubmitNest extends AppCompatActivity{
                     checkboxResult3 = checkbox3.getText().toString();
                 }
                 else{
-                    Toast.makeText(this, "checkboxResult3의 값이 저장안됨", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 break;
             case R.id.serviceCheckbox4:
@@ -221,10 +228,42 @@ public class SubmitNest extends AppCompatActivity{
                     checkboxResult4 = checkbox4.getText().toString();
                 }
                 else{
-                    Toast.makeText(this, "checkboxResult4의 값이 저장안됨", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 break;
         }
+    }
+
+    public void saveSubmitNest() {
+        // Write a message to the database
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> submitNest = new HashMap<>();
+        submitNest.put("address", submitNestAddressSearchResult);
+        submitNest.put("addressMore", submitNestAddressMoreResult);
+        submitNest.put("rental period", spinnerChoice1);
+        submitNest.put("roomSize", roomSizeResult);
+        submitNest.put("serviceCheckbox1",checkboxResult1);
+        submitNest.put("serviceCheckbox2",checkboxResult2);
+        submitNest.put("serviceCheckbox3",checkboxResult3);
+        submitNest.put("serviceCheckbox4",checkboxResult4);
+        submitNest.put("callTime1",spinnerChoice2);
+        submitNest.put("callTime2",spinnerChoice3);
+
+        // Add a new document with a generated ID
+        db.collection("submitNest")
+                .add(submitNest)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
     }
 }
 
