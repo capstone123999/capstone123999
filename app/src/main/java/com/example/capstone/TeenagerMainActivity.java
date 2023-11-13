@@ -15,8 +15,8 @@ public class TeenagerMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_teenager_main);
 
         // Emergency 버튼 클릭 시 이벤트 처리
-        Button teenagerMainEmergency = findViewById(R.id.teenagerMainEmergency);
-        teenagerMainEmergency.setOnClickListener(new View.OnClickListener() {
+        Button Emergency = findViewById(R.id.Emergency);
+        Emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TeenagerMainActivity.this, Emergency.class);
@@ -45,8 +45,8 @@ public class TeenagerMainActivity extends AppCompatActivity {
         });
 
         // MyPage 이미지 버튼 클릭 시 이벤트 처리
-        ImageButton teenagerMainMyPageImage = findViewById(R.id.teenagerMainMyPageImage);
-        teenagerMainMyPageImage.setOnClickListener(new View.OnClickListener() {
+        ImageButton UserImage = findViewById(R.id.UserImage);
+        UserImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TeenagerMainActivity.this, MyPage.class);

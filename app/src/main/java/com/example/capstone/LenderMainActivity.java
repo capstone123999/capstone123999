@@ -24,8 +24,8 @@ public class LenderMainActivity extends AppCompatActivity {
             }
         });
         // Emergency 버튼 클릭 시 이벤트 처리
-        Button lenderMainEmergency = findViewById(R.id.lenderMainEmergency);
-        lenderMainEmergency.setOnClickListener(new View.OnClickListener() {
+        Button Emergency = findViewById(R.id.Emergency);
+        Emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LenderMainActivity.this, Emergency.class);
@@ -43,8 +43,8 @@ public class LenderMainActivity extends AppCompatActivity {
             }
         });
         // MyPage 이미지 버튼 클릭 시 이벤트 처리
-        ImageButton lenderMainMyPageImage = findViewById(R.id.lenderMainMyPageImage);
-        lenderMainMyPageImage.setOnClickListener(new View.OnClickListener() {
+        ImageButton UserImage = findViewById(R.id.UserImage);
+        UserImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LenderMainActivity.this, MyPage.class);
