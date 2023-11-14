@@ -24,12 +24,12 @@ public class TeenagerMainActivity extends AppCompatActivity {
             }
         });
 
-        // Notify 버튼 클릭 시 이벤트 처리
+        // TeenagerNotify 버튼 클릭 시 이벤트 처리
         Button teenagerMainNotify = findViewById(R.id.teenagerMainNotify);
         teenagerMainNotify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TeenagerMainActivity.this, Notify.class);
+                Intent intent = new Intent(TeenagerMainActivity.this, TeenagerNotify.class);
                 startActivity(intent);
             }
         });
@@ -44,12 +44,12 @@ public class TeenagerMainActivity extends AppCompatActivity {
             }
         });
 
-        // MyPage 이미지 버튼 클릭 시 이벤트 처리
+        // LenderMyPage 이미지 버튼 클릭 시 이벤트 처리
         ImageButton UserImage = findViewById(R.id.UserImage);
         UserImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TeenagerMainActivity.this, MyPage.class);
+                Intent intent = new Intent(TeenagerMainActivity.this, TeenagerMyPage.class);
                 startActivity(intent);
 
             }

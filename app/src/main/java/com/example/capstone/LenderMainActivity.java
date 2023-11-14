@@ -33,21 +33,21 @@ public class LenderMainActivity extends AppCompatActivity {
             }
         });
 
-        // Notify 버튼 클릭 시 이벤트 처리
+        // LenderNotify 버튼 클릭 시 이벤트 처리
         Button lenderMainNotify = findViewById(R.id.lenderMainNotify);
         lenderMainNotify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LenderMainActivity.this, Notify.class);
+                Intent intent = new Intent(LenderMainActivity.this, LenderNotify.class);
                 startActivity(intent);
             }
         });
-        // MyPage 이미지 버튼 클릭 시 이벤트 처리
+        // LenderMyPage 이미지 버튼 클릭 시 이벤트 처리
         ImageButton UserImage = findViewById(R.id.UserImage);
         UserImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LenderMainActivity.this, MyPage.class);
+                Intent intent = new Intent(LenderMainActivity.this, LenderMyPage.class);
                 startActivity(intent);
 
             }

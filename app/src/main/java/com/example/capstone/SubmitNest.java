@@ -159,7 +159,12 @@ public class SubmitNest extends AppCompatActivity{
             public void onClick(View v) {
                 //실평수 부분
                 try {
+                    if(roomSize.length()==0){
+                    Toast.makeText(getApplicationContext(),"빈 칸 없이 입력해주세요",Toast.LENGTH_LONG).show();
+                    return;
+                    }
                     roomSizeResult = Integer.parseInt(roomSize.getText().toString());
+
                 }catch (NumberFormatException e){
                     Toast.makeText(SubmitNest.this, "실평수를 공백 없이 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
@@ -167,11 +172,19 @@ public class SubmitNest extends AppCompatActivity{
                 //상세 주소 부분
                 try {
                     submitNestAddressMoreResult = submitNestAddressMore.getText().toString();
+                    if(submitNestAddressMoreResult.length()==0){
+                        Toast.makeText(getApplicationContext(),"빈 칸 없이 입력해주세요",Toast.LENGTH_LONG).show();
+                        return;
+                    }
                 }catch (NumberFormatException e){
                     Toast.makeText(SubmitNest.this, "상세 주소를 써주세요", Toast.LENGTH_SHORT).show();
                 }
                 //정보 db에 저장
                 saveSubmitNest();
+                //성공적 저장 토스트 출력 후 LenderMain 화면으로 연결
+                Toast.makeText(SubmitNest.this, "보금자리 정보가 저장되었습니다", Toast.LENGTH_SHORT).show();
+                Intent fromSubmitNestToLenderMain = new Intent(SubmitNest.this, LenderMainActivity.class);
+                startActivity(fromSubmitNestToLenderMain);
             }
         });
     }

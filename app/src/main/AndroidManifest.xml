@@ -52,14 +52,16 @@
         <activity
             android:name=".Map"/>
         <activity
-            android:name=".MyPage" />
+            android:name=".LenderMyPage" />
         <activity
-            android:name=".Notify" />
+            android:name=".LenderNotify" />
         <activity
             android:name=".SubmitNest"
             android:exported="true"/>
         <activity
             android:name=".TeenagerMainActivity"/>
+        <activity
+            android:name=".TeenagerNotify"/>
         <meta-data
             android:name="com.kakao.vectormap.APP_KEY"
             android:value="4789a403431c8f9cd086dc95c5f983c4"/>
