@@ -61,6 +61,6 @@
             android:layout_gravity="bottom"
             app:itemBackground="@color/white"
             app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_menu" />
+            app:menu="@menu/teenager_bottom_menu" />
     </LinearLayout>
 </LinearLayout>

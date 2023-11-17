@@ -102,13 +102,13 @@
         android:layout_width="match_parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigationview"
+            android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
             app:itemBackground="@color/white"
             app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_menu" />
+            app:menu="@menu/lender_bottom_menu" />
     </LinearLayout>
 
 </LinearLayout>

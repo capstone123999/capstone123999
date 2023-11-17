@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/home"
+        android:id="@+id/action_Nest"
         android:enabled="true"
         android:icon="@drawable/nest"
-        android:title="보금자리"
+        android:title="보금자리 등록"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/emergency"
+        android:id="@+id/action_Notify"
         android:enabled="true"
         android:icon="@drawable/notify"
         android:title="일반신고"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/info"
+        android:id="@+id/action_Emergency"
         android:enabled="true"
         android:icon="@drawable/emergency"
         android:title="긴급신고"

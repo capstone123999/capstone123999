@@ -1,12 +1,15 @@
 package com.example.capstone;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.view.MenuItem;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,6 +21,7 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import static android.content.ContentValues.TAG;
 
@@ -31,6 +35,39 @@ public class LenderNotify extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lender_notify);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        ColorStateList iconColor = ContextCompat.getColorStateList(this, R.color.custom_icon_color);
+        bottomNavigationView.setItemIconTintList(iconColor);
+
+        ColorStateList textColor = ContextCompat.getColorStateList(this, R.color.custom_text_color);
+        bottomNavigationView.setItemTextColor(textColor);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_Nest:
+                        // 보금자리 등록 메뉴 아이템 클릭 시 처리할 로직 작성
+                        Intent findNestIntent = new Intent(LenderNotify.this, SubmitNest.class);
+                        startActivity(findNestIntent);
+                        item.setChecked(false);
+                        return true;
+                    case R.id.action_Notify:
+                        // 일반신고 메뉴 아이템 클릭 시 처리할 로직 작성
+                        Intent notifyIntent = new Intent(LenderNotify.this, LenderNotify.class);
+                        startActivity(notifyIntent);
+                        item.setChecked(false);
+                        return true;
+                    case R.id.action_Emergency:
+                        // 긴급신고 메뉴 아이템 클릭 시 처리할 로직 작성
+                        Intent emergencyIntent = new Intent(LenderNotify.this, Emergency.class);
+                        startActivity(emergencyIntent);
+                        item.setChecked(false);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         lenderNotifyTitle = findViewById(R.id.notifyTitle);
         LenderNotifyReason = findViewById(R.id.notifyReason);
