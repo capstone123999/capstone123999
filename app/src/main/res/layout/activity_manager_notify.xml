@@ -8,7 +8,8 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     android:paddingLeft="30dp"
-    android:paddingRight="30dp">
+    android:paddingRight="30dp"
+    tools:context=".ManagerNotify">
 
     <TextView
         android:id="@+id/notify_info"
@@ -29,24 +30,30 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/manager_next_submit_address_result"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/manager_notify_teenager_button"
+            android:layout_width="300dp"
+            android:layout_height="75dp"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:background="@drawable/border"
-            android:layout_height="500px" />
+            android:backgroundTint="#80D9FB"
+            android:text="청소년" />
+
+        <Button
+            android:id="@+id/manager_notify_lender_button"
+            android:layout_marginTop="35dp"
+            android:layout_width="300dp"
+            android:layout_height="75dp"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/border"
+            android:backgroundTint="#80D9FB"
+            android:text="대여자" />
 
     </LinearLayout>
 
-
-    <Button
-        android:id="@+id/joinRegisterButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="OK"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:background="#80D9FB"
-        android:textStyle="bold" />
 
 </LinearLayout>
