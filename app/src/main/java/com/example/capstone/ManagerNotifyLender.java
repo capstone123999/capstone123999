@@ -2,29 +2,30 @@ package com.example.capstone;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
+import com.example.capstone.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import static android.content.ContentValues.TAG;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class ManagerNotifyLender extends AppCompatActivity {
-
-    String lenderNotifyText, lenderNotifyTitle;
-    ListView notify_info_lender;
+    private FirebaseFirestore db; // Firestore instance declaration
+    private List<ListLayout> itemList; // array of list items
+    private ListAdapter adapter; // Recycler View Adapter
+    RecyclerView notify_info_lender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +33,47 @@ public class ManagerNotifyLender extends AppCompatActivity {
         setContentView(R.layout.activity_manager_notify_lender);
 
         notify_info_lender = findViewById(R.id.notify_info_lender);
+        //ArrayAdapter<ListLayout> lenderNotifyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList);
 
         //DB 정보 가져오기
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        db = FirebaseFirestore.getInstance();
 
-        DocumentReference docRef = db.collection("LenderNotify").document("JZ0my653wgSnFqeVZueQ");
+        itemList = new ArrayList<>();
+        adapter = new ListAdapter((ArrayList<ListLayout>) itemList);
+
+        if (notify_info_lender != null) {
+            // Set LayoutManager and Adapter for the RecyclerView
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            notify_info_lender.setLayoutManager(layoutManager);
+            notify_info_lender.setAdapter(adapter);
+        } else {
+            // Handle the case if notify_info_lender is not found or not a RecyclerView
+            Log.e("RecyclerView Error", "notify_info_lender not found or not a RecyclerView");
+        }
+
+
+        db.collection("LenderNotify") // Collection to work with
+                .get() // Get document
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    // if successful
+                    itemList.clear();
+                    for (DocumentSnapshot document : queryDocumentSnapshots) { // The imported documents go into result
+                        String LenderNotifyText = document.getString("LenderNotifyText");
+                        String LenderNotifyTitle = document.getString("LenderNotifyTitle");
+                        ListLayout item = new ListLayout(LenderNotifyText, LenderNotifyTitle);
+                        itemList.add(item);
+                    }
+                    adapter.notifyDataSetChanged(); // Update recycler view
+                })
+                .addOnFailureListener(e -> {
+                    // In case of failure
+                    Log.w("MainActivity", "Error getting documents: ", e);
+                });
+
+
+
+
+        /*DocumentReference docRef = db.collection("LenderNotify").document("JZ0my653wgSnFqeVZueQ");
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -45,6 +81,7 @@ public class ManagerNotifyLender extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
+
                         lenderNotifyText = document.getString("LenderNotifyText");
                         lenderNotifyTitle = document.getString("LenderNotifyTitle");
 
@@ -76,11 +113,6 @@ public class ManagerNotifyLender extends AppCompatActivity {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
-        });
-
-
-        notify_info_lender.setAdapter(adapter);
-
-
+        });*/
     }
 }

@@ -53,12 +53,11 @@ public class CustomListView extends BaseAdapter
             convertView = layoutInflater.inflate(R.layout.custom_listview, parent, false);
         }
 
-        ImageView mainImage = convertView.findViewById(R.id.mainImage);
-
+        //ImageView mainImage = convertView.findViewById(R.id.mainImage);
         TextView title = convertView.findViewById(R.id.title);
         TextView body_1 = convertView.findViewById(R.id.body_1);
 
-        mainImage.setImageResource(listViewData.get(position).mainImage);
+        //mainImage.setImageResource(listViewData.get(position).mainImage);
         title.setText(listViewData.get(position).title);
         body_1.setText(listViewData.get(position).body_1);
 
