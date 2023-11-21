@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ManagerMain extends AppCompatActivity {
+public class ManagerMainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,28 +21,28 @@ public class ManagerMain extends AppCompatActivity {
         manager_button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ManagerMain.this, ManagerNestSubmitActivity.class);
+                Intent intent = new Intent(ManagerMainActivity.this, ManagerNestSubmitActivity.class);
                 startActivity(intent);
             }
         });
         manager_button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ManagerMain.this, ManagerNestMatchResultActivity.class);
+                Intent intent = new Intent(ManagerMainActivity.this, ManagerNestMatchResultActivity.class);
                 startActivity(intent);
             }
         });
         manager_button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ManagerMain.this, ManagerNotify.class);
+                Intent intent = new Intent(ManagerMainActivity.this, ManagerNotify.class);
                 startActivity(intent);
             }
         });
         manager_button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ManagerMain.this, ManagerEmergency.class);
+                Intent intent = new Intent(ManagerMainActivity.this, ManagerEmergency.class);
                 startActivity(intent);
             }
         });

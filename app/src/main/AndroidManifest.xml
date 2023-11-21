@@ -21,23 +21,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-        </activity>
+        </activity>>
+        <activity android:name=".FindNestResult" />
+        <activity android:name=".AccountInfoActivity" />
+        <activity android:name=".JoinActivity" />
+        <activity android:name=".UserChoiceInformation" />
         <activity android:name=".AddressActivity" />
         <activity android:name=".Emergency" />
         <activity android:name=".FindNest" />
         <activity android:name=".LenderMainActivity" />
         <activity android:name=".ManagerEmergency" />
-        <activity android:name=".ManagerMain" />
+        <activity android:name=".ManagerMainActivity" />
         <activity android:name=".ManagerNestMatchResultActivity" />
         <activity android:name=".ManagerNestSubmitActivity" />
         <activity
             android:name=".ManagerNotify"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ManagerNotifyLender"
@@ -45,7 +44,7 @@
         <activity
             android:name=".ManagerNotifyTeenager"
             android:exported="false" />
-        <activity android:name=".Map" />
+        <activity android:name=".MapActivity" />
         <activity android:name=".LenderMyPage" />
         <activity android:name=".LenderNotify" />
         <activity

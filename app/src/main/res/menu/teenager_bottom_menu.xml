@@ -4,19 +4,19 @@
     <item
         android:id="@+id/action_Nest"
         android:enabled="true"
-        android:icon="@drawable/nest"
+        android:icon="@drawable/find2"
         android:title="보금자리 찾기"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_Notify"
         android:enabled="true"
-        android:icon="@drawable/notify"
+        android:icon="@drawable/notify2"
         android:title="일반신고"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_Emergency"
         android:enabled="true"
-        android:icon="@drawable/emergency"
+        android:icon="@drawable/emer2"
         android:title="긴급신고"
         app:showAsAction="ifRoom"/>
 </menu>
