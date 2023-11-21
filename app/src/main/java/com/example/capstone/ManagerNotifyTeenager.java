@@ -5,12 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,7 +33,9 @@ public class ManagerNotifyTeenager extends AppCompatActivity {
     private List<ListLayout> itemList; // array of list items
     private ListAdapter adapter; // Recycler View Adapter
     RecyclerView notify_info_teenager;
+    String teenagerNotifyText,teenagerNotifyTitle;
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,22 +61,22 @@ public class ManagerNotifyTeenager extends AppCompatActivity {
 
 
         db.collection("teenagerNotify") // Collection to work with
-                .get() // Get document
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    // if successful
-                    itemList.clear();
-                    for (DocumentSnapshot document : queryDocumentSnapshots) { // The imported documents go into result
-                        String teenagerNotifyText = document.getString("TeenagerNotifyText");
-                        String teenagerNotifyTitle = document.getString("TeenagerNotifyTitle");
-                        ListLayout item = new ListLayout(teenagerNotifyText, teenagerNotifyTitle);
-                        itemList.add(item);
-                    }
-                    adapter.notifyDataSetChanged(); // Update recycler view
-                })
-                .addOnFailureListener(e -> {
-                    // In case of failure
-                    Log.w("MainActivity", "Error getting documents: ", e);
-                });
+            .get() // Get document
+            .addOnSuccessListener(queryDocumentSnapshots -> {
+                // if successful
+                itemList.clear();
+                for (DocumentSnapshot document : queryDocumentSnapshots) { // The imported documents go into result
+                    teenagerNotifyText = document.getString("TeenagerNotifyText");
+                    teenagerNotifyTitle = document.getString("TeenagerNotifyTitle");
+                    ListLayout item = new ListLayout(teenagerNotifyText, teenagerNotifyTitle);
+                    itemList.add(item);
+                }
+                adapter.notifyDataSetChanged(); // Update recycler view
+            })
+            .addOnFailureListener(e -> {
+                // In case of failure
+                Log.w("MainActivity", "Error getting documents: ", e);
+            });
 
 
     }
