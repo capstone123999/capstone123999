@@ -8,11 +8,10 @@ android {
     compileSdk 33
     defaultConfig {
         applicationId "com.example.capstone"
-        minSdk 33
+        minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         viewBinding {
@@ -47,12 +46,11 @@ dependencies {
     implementation 'org.json:json:20210307'
     implementation 'com.google.code.gson:gson:2.8.8'
     implementation 'com.google.firebase:firebase-firestore:24.1.1'
-    //파이어베이스
-    implementation platform('com.google.firebase:firebase-bom:32.5.0')
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.firebase:firebase-analytics'
     // Add the dependency for the Realtime Database library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation platform("com.google.firebase:firebase-bom:32.3.1")
     implementation("com.google.firebase:firebase-database")
 }

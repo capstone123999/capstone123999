@@ -1,14 +1,27 @@
 package com.example.capstone;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /***
  * '보금자리 찾기' 기능.
@@ -17,30 +30,32 @@ import android.widget.Spinner;
  * 치를 안내해준다.
  */
 public class FindNest extends AppCompatActivity {
-
-    Spinner spinner1;
+    String monthCheckChoice;
+    Spinner monthChoice;
     String[] items1;
-
+    Button nestFindRegisterButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nest_find);
 
         // 스피너 아이템 설정
-        items1 = new String[]{"개월 수를 선택해주세요", "1개월", "2개월", "3개월", "4개월", "5개월", "6개월", "7개월", "8개월", "9개월", "10개월", "11개월", "12개월"};
+        items1 = new String[]{"1개월", "2개월", "3개월", "4개월", "5개월", "6개월", "7개월", "8개월", "9개월", "10개월", "11개월", "12개월"};
 
         // 스피너 초기화 및 어댑터 설정
-        spinner1 = findViewById(R.id.monthChoice);
+        monthChoice = findViewById(R.id.monthChoice);
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items1);
 
-        spinner1.setAdapter(adapter1);
+        monthChoice.setAdapter(adapter1);
 
         // 스피너 아이템 선택 이벤트 처리
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        monthChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = items1[position];
+                Intent monthIntent = new Intent();
+                monthCheckChoice = adapter1.getItem(position);
+                monthIntent.putExtra("genderIntent1", monthCheckChoice);
             }
 
             @Override
@@ -49,14 +64,44 @@ public class FindNest extends AppCompatActivity {
             }
         });
 
-        Button nestFindRegisterButton = findViewById(R.id.nestFindRegisterButton);
+        nestFindRegisterButton = findViewById(R.id.nestFindRegisterButton);
         nestFindRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // activity_google_map으로 이동하는 인텐트 생성
-                Intent intent = new Intent(FindNest.this, Map.class);
-                startActivity(intent);
+                //정보 db에 저장
+                saveFindNest();
+                //성공적 저장 토스트 출력 후 LenderMain 화면으로 연결
+                Toast.makeText(FindNest.this, "보금자리 정보가 저장되었습니다", Toast.LENGTH_SHORT).show();
+                Intent fromFindNestToMap = new Intent(FindNest.this, FindNestResult.class);
+                startActivity(fromFindNestToMap);
             }
         });
+    }
+
+    public void saveFindNest() {
+        // Write a message to the database
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> residentPeriod = new HashMap<>();
+        residentPeriod.put("residentPeriod", monthCheckChoice);
+        residentPeriod.put("teenagerId", JoinActivity.login_ID);
+        residentPeriod.put("teenagerPw", JoinActivity.login_pw);
+        residentPeriod.put("teenagerGender", JoinActivity.genderChoiceResult);
+        residentPeriod.put("teenagerName", JoinActivity.joinName);
+
+        // Add a new document with a generated ID
+        db.collection("residentPeriod")
+                .add(residentPeriod)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
     }
 }

@@ -18,7 +18,7 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="배치 완료"
+        android:text="보금자리 배치 시작"
         android:textSize="45dp"
         android:layout_marginBottom="50dp"
         />
@@ -29,24 +29,25 @@
         android:layout_height="223dp"
         app:srcCompat="@drawable/nest" />
 
-    <TextView
-        android:id="@+id/findSuccessText"
-        android:layout_width="360dp"
-        android:layout_height="50dp"
-        android:text="가까운 파출소를 찾았습니다"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:textSize="28dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginBottom="30dp" />
-
     <Button
         android:id="@+id/findSuccessButton"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="25dp"
         android:background="#80D9FB"
-        android:text="OK" />
+        android:layout_marginTop="50dp"
+        android:text="시작하기" />
+
+    <Button
+        android:id="@+id/streetButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:background="#80D9FB"
+        android:layout_marginTop="50dp"
+        android:text="길 안내" />
 </LinearLayout>
