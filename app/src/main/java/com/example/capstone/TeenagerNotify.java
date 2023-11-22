@@ -5,8 +5,11 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,7 +32,10 @@ public class TeenagerNotify extends AppCompatActivity {
 
     EditText teenagerNotifyTitle, teenagerNotifyReason;
     Button teenagerNotifyButton;
-    String teenagerNotifyTitleResult, teenagerNotifyReasonResult;
+    String teenagerNotifyTitleResult, teenagerNotifyReasonResult, teenagerNotifyCategory;
+    Spinner teenager_notify_select;
+    ArrayAdapter<String> adapter1;
+    String[] items = {"신고 사유 : 항목 중 선택", "금전 갈취", "불법 숙박업소","숙소 주인의 인성적 결함","기타"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +80,34 @@ public class TeenagerNotify extends AppCompatActivity {
         teenagerNotifyTitle = findViewById(R.id.notifyTitle);
         teenagerNotifyReason = findViewById(R.id.notifyReason);
         teenagerNotifyButton = findViewById(R.id.notifyButton);
+        teenager_notify_select = findViewById(R.id.teenager_notify_select);
 
+        teenagerNotifyTitle.setVisibility(View.GONE);
 
+        //개월 수 선택 스피너
+        adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        teenager_notify_select =findViewById(R.id.teenager_notify_select);
+        teenager_notify_select.setAdapter(adapter1);
+        teenager_notify_select.setSelection(0);
+        teenager_notify_select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                Intent teenagerNotifyCategoryIntent = new Intent();
+                teenagerNotifyCategory =adapter1.getItem(i);
+                teenagerNotifyCategoryIntent.putExtra("teenagerNotifyCategory", teenagerNotifyCategory);
+
+                if(teenagerNotifyCategory.equals("기타")){
+                    teenagerNotifyTitle.setVisibility(View.VISIBLE);
+                }else{
+                    teenagerNotifyTitle.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         teenagerNotifyButton.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +116,7 @@ public class TeenagerNotify extends AppCompatActivity {
                 //실평수 부분
                 try {
                     teenagerNotifyTitleResult = teenagerNotifyTitle.getText().toString();
-                    if(teenagerNotifyTitleResult.length()==0){
+                    if(teenagerNotifyTitleResult.length()==0 && teenagerNotifyCategory.equals("신고 사유 : 항목 중 선택")){
                         Toast.makeText(getApplicationContext(),"빈 칸 없이 입력해주세요",Toast.LENGTH_LONG).show();
                         return;
                     }
@@ -118,6 +150,7 @@ public class TeenagerNotify extends AppCompatActivity {
         Map<String, Object> teenagerNotify = new HashMap<>();
         teenagerNotify.put("TeenagerNotifyTitle", teenagerNotifyTitleResult);
         teenagerNotify.put("TeenagerNotifyText", teenagerNotifyReasonResult);
+        teenagerNotify.put("TeenagerNotifyCategory", teenagerNotifyCategory);
 
         // Add a new document with a generated ID
         db.collection("teenagerNotify")

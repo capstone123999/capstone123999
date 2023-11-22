@@ -5,8 +5,11 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,7 +32,10 @@ public class LenderNotify extends AppCompatActivity {
 
     EditText lenderNotifyTitle, LenderNotifyReason;
     Button LenderNotifyButton;
-    String LenderNotifyTitleResult, LenderNotifyReasonResult;
+    String LenderNotifyTitleResult, LenderNotifyReasonResult, lenderNotifyCategory;
+    Spinner lender_notify_select;
+    ArrayAdapter<String> adapter1;
+    String[] items = {"신고 사유 : 항목 중 선택", "금전 갈취", "기물 파손","청소년의 인성적 결함","기타"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +78,34 @@ public class LenderNotify extends AppCompatActivity {
         lenderNotifyTitle = findViewById(R.id.notifyTitle);
         LenderNotifyReason = findViewById(R.id.notifyReason);
         LenderNotifyButton = findViewById(R.id.notifyButton);
+        lender_notify_select = findViewById(R.id.lender_notify_select);
 
+        lenderNotifyTitle.setVisibility(View.GONE);
 
+        //개월 수 선택 스피너
+        adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        lender_notify_select =findViewById(R.id.lender_notify_select);
+        lender_notify_select.setAdapter(adapter1);
+        lender_notify_select.setSelection(0);
+        lender_notify_select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                Intent lenderNotifyCategoryIntent = new Intent();
+                lenderNotifyCategory =adapter1.getItem(i);
+                lenderNotifyCategoryIntent.putExtra("lenderNotifyCategory", lenderNotifyCategory);
+
+                if(lenderNotifyCategory.equals("기타")){
+                    lenderNotifyTitle.setVisibility(View.VISIBLE);
+                }else{
+                    lenderNotifyTitle.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         LenderNotifyButton.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +114,7 @@ public class LenderNotify extends AppCompatActivity {
                 //실평수 부분
                 try {
                     LenderNotifyTitleResult = lenderNotifyTitle.getText().toString();
-                    if(LenderNotifyTitleResult.length()==0){
+                    if(LenderNotifyTitleResult.length()==0 && lenderNotifyCategory.equals("신고 사유 : 항목 중 선택")){
                         Toast.makeText(getApplicationContext(),"빈 칸 없이 입력해주세요",Toast.LENGTH_LONG).show();
                         return;
                     }
@@ -116,6 +148,7 @@ public class LenderNotify extends AppCompatActivity {
         Map<String, Object> LenderNotify = new HashMap<>();
         LenderNotify.put("LenderNotifyTitle", LenderNotifyTitleResult);
         LenderNotify.put("LenderNotifyText", LenderNotifyReasonResult);
+        LenderNotify.put("lenderNotifyCategory", lenderNotifyCategory);
 
         // Add a new document with a generated ID
         db.collection("LenderNotify")

@@ -40,9 +40,8 @@ public class AccountInfoActivity extends AppCompatActivity {
         idTextView = findViewById(R.id.idTextView);
         pwTextView = findViewById(R.id.pwTextView);
 
-        String desiredUserId = getSharedPreferences("userPrefs", MODE_PRIVATE).getString("id", null);
-
         //장채원 작성
+        String desiredUserId = getSharedPreferences("userPrefs", MODE_PRIVATE).getString("id", null);
         if (desiredUserId != null && !desiredUserId.isEmpty()) {
             db.collection("userInformation")
                     .whereEqualTo("id", desiredUserId)
