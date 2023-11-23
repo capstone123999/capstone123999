@@ -57,21 +57,24 @@ public class TeenagerNotify extends AppCompatActivity {
                         // 보금자리 찾기 메뉴 아이템 클릭 시 처리할 로직 작성
                         Intent findNestIntent = new Intent(TeenagerNotify.this, FindNest.class);
                         startActivity(findNestIntent);
+                        item.setChecked(false);
                         return true;
                     case R.id.action_Notify:
                         // 일반신고 메뉴 아이템 클릭 시 처리할 로직 작성
                         Intent notifyIntent = new Intent(TeenagerNotify.this, TeenagerNotify.class);
                         startActivity(notifyIntent);
+                        item.setChecked(true);
                         return true;
                     case R.id.action_Emergency:
                         // 긴급신고 메뉴 아이템 클릭 시 처리할 로직 작성
                         Intent emergencyIntent = new Intent(TeenagerNotify.this, Emergency.class);
                         startActivity(emergencyIntent);
+                        item.setChecked(false);
                         return true;
                 }
 
                 // 클릭된 상태를 나타내지 않도록 처리
-                return false;
+                return true;
             }
         });
 

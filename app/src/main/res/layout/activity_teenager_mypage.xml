@@ -21,9 +21,9 @@
 
         <ImageView
             android:id="@+id/UserImage"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:srcCompat="@drawable/user" />
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            app:srcCompat="@drawable/my2" />
 
         <Button
             android:layout_marginTop="50dp"
@@ -33,7 +33,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:background="@drawable/border_button"
-            android:backgroundTint="#80D9FB"
+            android:backgroundTint="#FFE070"
             android:textColor="@color/black"
             android:text="계정정보" />
 
@@ -45,9 +45,18 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:background="@drawable/border_button"
-            android:backgroundTint="#80D9FB"
+            android:backgroundTint="#FFE070"
             android:textColor="@color/black"
             android:text="탈퇴하기" />
+
+        <Button
+            android:id="@+id/logoutTeenagerButton"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:text="로그아웃" />
     </LinearLayout>
 
     <LinearLayout
@@ -59,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
-            app:itemBackground="@color/white"
+            app:itemBackground="@color/gugugu"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/teenager_bottom_menu" />
     </LinearLayout>

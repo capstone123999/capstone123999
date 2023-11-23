@@ -37,8 +37,8 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:background="@drawable/border"
-            android:backgroundTint="#80D9FB"
+            android:background="@drawable/border_button"
+            android:backgroundTint="#FFE070"
             android:text="청소년" />
 
         <Button
@@ -49,8 +49,8 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:background="@drawable/border"
-            android:backgroundTint="#80D9FB"
+            android:background="@drawable/border_button"
+            android:backgroundTint="#FFE070"
             android:text="대여자" />
 
     </LinearLayout>

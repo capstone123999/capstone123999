@@ -20,7 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class LenderMyPage extends AppCompatActivity {
 
-    Button deleteButton,accountButton;
+    Button deleteButton,accountButton, logoutLenderButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class LenderMyPage extends AppCompatActivity {
         setContentView(R.layout.activity_lender_mypage);
 
 
+        logoutLenderButton = findViewById(R.id.logoutLenderButton);
         deleteButton = findViewById(R.id.deleteButton);
         accountButton = findViewById(R.id.accountButton);
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +79,17 @@ public class LenderMyPage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LenderMyPage.this, AccountInfoActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        logoutLenderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
             }
         });
 

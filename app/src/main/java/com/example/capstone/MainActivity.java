@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 
@@ -32,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     Button loginButton, joinButton, PwFindButton;
     EditText loginId, loginPw;
-    CheckBox autoLoginCheckBox;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         loginId = findViewById(R.id.loginId);
         loginPw = findViewById(R.id.loginPw);
         PwFindButton = findViewById(R.id.PwFindButton);
-        autoLoginCheckBox = findViewById(R.id.autoLoginCheckBox);
         loginButton = findViewById(R.id.loginButton);
         joinButton = findViewById(R.id.joinButton);
 
@@ -56,6 +56,31 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent3);
             }
         });
+
+        loginPw.setTransformationMethod(new PasswordTransformationMethod());
+        // 패스워드 입력란의 텍스트 변화를 감지하는 TextWatcher
+        TextWatcher passwordTextWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String password = s.toString();
+                String maskedPassword = "";
+                for (int i = 0; i < password.length(); i++) {
+                    maskedPassword += "*";
+                }
+                loginPw.removeTextChangedListener(this);
+                loginPw.setText(maskedPassword);
+                loginPw.setSelection(maskedPassword.length());
+                loginPw.addTextChangedListener(this);
+            }
+        };
+
+        loginPw.setTransformationMethod(new PasswordTransformationMethod());
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,5 +130,14 @@ public class MainActivity extends AppCompatActivity {
                         });
             }
         });
+        PwFindButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, passwdFindActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
     }
 }

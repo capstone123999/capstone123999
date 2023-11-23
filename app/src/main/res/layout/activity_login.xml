@@ -18,9 +18,9 @@
 
         <ImageView
             android:id="@+id/UserImage"
-            android:layout_width="190dp"
-            android:layout_height="190dp"
-            app:srcCompat="@drawable/user" />
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            app:srcCompat="@drawable/my2" />
 
     </LinearLayout>
 
@@ -66,29 +66,13 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="20dp"
-        android:background="#80D9FB"
+        android:background="#FFE070"
         android:text="로그인" />
 
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <CheckBox
-            android:id="@+id/autoLoginCheckBox"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:text="자동 로그인 기능" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
+        android:layout_marginBottom="50dp"
         android:layout_height="140dp">
 
         <Button

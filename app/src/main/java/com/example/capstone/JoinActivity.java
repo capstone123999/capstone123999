@@ -64,6 +64,17 @@ public class JoinActivity extends AppCompatActivity {
 
         genderChoice = findViewById(R.id.genderChoice);
 
+
+
+
+        numberButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(JoinActivity.this, "인증완료", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        });
+
         // 스피너 아이템 설정
         joinItems = new String[]{"선택", "남", "여"};
 

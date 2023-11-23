@@ -46,6 +46,7 @@
             android:layout_width="105dp"
             android:layout_gravity="center"
             android:layout_height="33dp"
+            android:maxLength="3"
             android:hint="성명"
             android:textAlignment="center" />
 
@@ -105,6 +106,8 @@
                 android:id="@+id/num1"
                 android:layout_width="135dp"
                 android:layout_marginLeft="1dp"
+                android:inputType="number"
+                android:maxLength="6"
                 android:background="@drawable/border"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
@@ -128,6 +131,8 @@
                 android:layout_gravity="center"
                 android:background="@drawable/border"
                 android:layout_height="35dp"
+                android:inputType="number"
+                android:maxLength="7"
                 android:hint="뒷번호"
                 android:textAlignment="center" />
 
@@ -164,7 +169,9 @@
                 android:layout_height="35dp"
                 android:layout_marginLeft="1dp"
                 android:layout_gravity="center"
+                android:inputType="number"
                 android:hint="전화번호를 입력해주세요"
+                android:maxLength="11"
                 android:textAlignment="center" />
             <Button
                 android:id="@+id/numberButton"
@@ -173,7 +180,7 @@
                 android:layout_width="70dp"
                 android:layout_height="40dp"
                 android:background="@drawable/border_button"
-                android:backgroundTint="#80D9FB"
+                android:backgroundTint="#FFDA54"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:text="인증" />
@@ -207,6 +214,7 @@
             android:layout_width="250dp"
             android:layout_height="32dp"
             android:layout_marginLeft="20dp"
+            android:maxLength="10"
             android:hint="아이디를 입력해주세요"
             android:layout_gravity="center"
             android:textAlignment="center" />
@@ -241,6 +249,7 @@
             android:layout_width="250dp"
             android:layout_height="32dp"
             android:hint="비밀번호를 입력해주세요"
+            android:maxLength="10"
             android:textAlignment="center" />
 
     </LinearLayout>
@@ -253,7 +262,7 @@
         android:layout_height="50dp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:background="#80D9FB"
+        android:background="#FFE070"
         android:textSize="25dp"
         android:layout_marginBottom="50dp"
         android:text="OK" />

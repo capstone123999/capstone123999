@@ -25,10 +25,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +59,7 @@ public class SubmitNest extends AppCompatActivity{
     Spinner spinner1, spinner2, spinner3 = null;
     // 주소 요청코드 상수 requestCode
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
+    private FirebaseFirestore db;
     String[] items = {"개월 수를 선택해주세요", "1개월", "2개월", "3개월", "4개월", "5개월", "6개월", "7개월", "8개월", "9개월", "10개월", "11개월", "12개월"};
     String[] items2 = {"시간을 선택해주세요", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"};
 
@@ -73,6 +78,8 @@ public class SubmitNest extends AppCompatActivity{
         checkbox2 = findViewById(R.id.serviceCheckbox2);
         checkbox3 = findViewById(R.id.serviceCheckbox3);
         checkbox4 = findViewById(R.id.serviceCheckbox4);
+
+        db = FirebaseFirestore.getInstance();
 
         //개월 수 선택 스피너
         adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
@@ -160,8 +167,8 @@ public class SubmitNest extends AppCompatActivity{
                 //실평수 부분
                 try {
                     if(roomSize.length()==0){
-                    Toast.makeText(getApplicationContext(),"빈 칸 없이 입력해주세요",Toast.LENGTH_LONG).show();
-                    return;
+                        Toast.makeText(getApplicationContext(),"빈 칸 없이 입력해주세요",Toast.LENGTH_LONG).show();
+                        return;
                     }
                     roomSizeResult = Integer.parseInt(roomSize.getText().toString());
 
@@ -216,7 +223,7 @@ public class SubmitNest extends AppCompatActivity{
                 if (checked) {
                     checkboxResult1 = checkbox1.getText().toString();
                 }
-            else{
+                else{
                     return;
                 }
                 break;
@@ -224,7 +231,7 @@ public class SubmitNest extends AppCompatActivity{
                 if (checked){
                     checkboxResult2 = checkbox2.getText().toString();
                 }
-            else{
+                else{
                     return;
                 }
                 break;
@@ -248,35 +255,70 @@ public class SubmitNest extends AppCompatActivity{
     }
 
     public void saveSubmitNest() {
-        // Write a message to the database
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> submitNest = new HashMap<>();
-        submitNest.put("address", submitNestAddressSearchResult);
-        submitNest.put("addressMore", submitNestAddressMoreResult);
-        submitNest.put("rental period", spinnerChoice1);
-        submitNest.put("roomSize", roomSizeResult);
-        submitNest.put("serviceCheckbox1",checkboxResult1);
-        submitNest.put("serviceCheckbox2",checkboxResult2);
-        submitNest.put("serviceCheckbox3",checkboxResult3);
-        submitNest.put("serviceCheckbox4",checkboxResult4);
-        submitNest.put("callTime1",spinnerChoice2);
-        submitNest.put("callTime2",spinnerChoice3);
 
-        // Add a new document with a generated ID
-        db.collection("submitNest")
-                .add(submitNest)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
+        String submitNestUserId = getSharedPreferences("userPrefs", MODE_PRIVATE).getString("id", null);
+
+        if (submitNestUserId != null && !submitNestUserId.isEmpty()) {
+            db.collection("userInformation")
+                    .whereEqualTo("id", submitNestUserId)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    // Firestore에서 필드 값을 가져와서 변수에 저장
+                                    String name = document.getString("name");
+                                    String gender = document.getString("gender");
+                                    String id = document.getString("id");
+                                    String usertype= document.getString("usertype");
+
+                                    // Write a message to the database
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                    Map<String, Object> submitNest = new HashMap<>();
+                                    submitNest.put("lenderId", id);
+                                    submitNest.put("lenderGender", gender);
+                                    submitNest.put("lenderName", name);
+                                    submitNest.put("usertype", usertype);
+                                    submitNest.put("address", submitNestAddressSearchResult);
+                                    submitNest.put("addressMore", submitNestAddressMoreResult);
+                                    submitNest.put("rental period", spinnerChoice1);
+                                    submitNest.put("roomSize", roomSizeResult);
+                                    submitNest.put("serviceCheckbox1",checkboxResult1);
+                                    submitNest.put("serviceCheckbox2",checkboxResult2);
+                                    submitNest.put("serviceCheckbox3",checkboxResult3);
+                                    submitNest.put("serviceCheckbox4",checkboxResult4);
+                                    submitNest.put("callTime1",spinnerChoice2);
+                                    submitNest.put("callTime2",spinnerChoice3);
+
+                                    // Add a new document with a generated ID
+                                    db.collection("submitNest")
+                                            .add(submitNest)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w(TAG, "Error adding document", e);
+                                                }
+                                            });
+
+
+
+                                }
+                            } else {
+                                Log.w(TAG, "Error getting documents.", task.getException());
+                            }
+                        }
+                    });
+        } else {
+            Log.d(TAG, "SharedPreferences 'id' is null or empty");
+            // Handle this case as needed
+        }
     }
 }
 

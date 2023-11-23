@@ -15,11 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import static android.content.ContentValues.TAG;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +38,7 @@ public class FindNest extends AppCompatActivity {
     Spinner monthChoice;
     String[] items1;
     Button nestFindRegisterButton;
+    private FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,7 @@ public class FindNest extends AppCompatActivity {
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items1);
 
         monthChoice.setAdapter(adapter1);
+        db = FirebaseFirestore.getInstance();
 
         // 스피너 아이템 선택 이벤트 처리
         monthChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -71,7 +77,6 @@ public class FindNest extends AppCompatActivity {
                 //정보 db에 저장
                 saveFindNest();
                 //성공적 저장 토스트 출력 후 LenderMain 화면으로 연결
-                Toast.makeText(FindNest.this, "보금자리 정보가 저장되었습니다", Toast.LENGTH_SHORT).show();
                 Intent fromFindNestToMap = new Intent(FindNest.this, FindNestResult.class);
                 startActivity(fromFindNestToMap);
             }
@@ -79,29 +84,59 @@ public class FindNest extends AppCompatActivity {
     }
 
     public void saveFindNest() {
-        // Write a message to the database
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> residentPeriod = new HashMap<>();
-        residentPeriod.put("residentPeriod", monthCheckChoice);
-        residentPeriod.put("teenagerId", JoinActivity.login_ID);
-        residentPeriod.put("teenagerPw", JoinActivity.login_pw);
-        residentPeriod.put("teenagerGender", JoinActivity.genderChoiceResult);
-        residentPeriod.put("teenagerName", JoinActivity.joinName);
+        String findNestUserId = getSharedPreferences("userPrefs", MODE_PRIVATE).getString("id", null);
 
-        // Add a new document with a generated ID
-        db.collection("residentPeriod")
-                .add(residentPeriod)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
+        if (findNestUserId != null && !findNestUserId.isEmpty()) {
+            db.collection("userInformation")
+                    .whereEqualTo("id", findNestUserId)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    // Firestore에서 필드 값을 가져와서 변수에 저장
+                                    String name = document.getString("name");
+                                    String gender = document.getString("gender");
+                                    String id = document.getString("id");
+                                    String usertype= document.getString("usertype");
+
+                                    // Write a message to the database
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                    Map<String, Object> findNest = new HashMap<>();
+                                    findNest.put("residentPeriod", monthCheckChoice);
+                                    findNest.put("teenagerId", id);
+                                    findNest.put("teenagerGender", gender);
+                                    findNest.put("teenagerName", name);
+                                    findNest.put("usertype", usertype);
+
+                                    // Add a new document with a generated ID
+                                    db.collection("findNest")
+                                            .add(findNest)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w(TAG, "Error adding document", e);
+                                                }
+                                            });
+
+
+
+                                }
+                            } else {
+                                Log.w(TAG, "Error getting documents.", task.getException());
+                            }
+                        }
+                    });
+        } else {
+            Log.d(TAG, "SharedPreferences 'id' is null or empty");
+            // Handle this case as needed
+        }
     }
 }

@@ -14,5 +14,17 @@ public class ManagerNestSubmitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_nest_submit);
 
+        Button submitNestManagerButton = findViewById(R.id.submitNestManagerButton);
+
+        submitNestManagerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ManagerNestSubmitActivity.this, ManagerMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 }

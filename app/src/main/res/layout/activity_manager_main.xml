@@ -17,48 +17,53 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/manager_button1"
+            android:id="@+id/manager_button3"
             android:layout_width="300dp"
-            android:layout_height="75dp"
+            android:layout_height="90dp"
             android:textSize="25sp"
+            android:drawableStart="@drawable/megaicon"
+            android:padding="25dp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:background="@drawable/border"
-            android:backgroundTint="#80D9FB"
+            android:background="@drawable/border_bold"
+            android:backgroundTint="#FFE070"
+            android:text="일반신고 " />
+
+        <Button
+            android:id="@+id/manager_button1"
+            android:layout_width="300dp"
+            android:layout_height="90dp"
+            android:textSize="25sp"
+            android:layout_marginTop="50dp"
+            android:drawableStart="@drawable/infoicon"
+            android:padding="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/border_bold"
+            android:backgroundTint="#FFE070"
             android:text="보금자리 등록 정보" />
         <Button
             android:id="@+id/manager_button2"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="50dp"
             android:layout_width="300dp"
-            android:layout_height="75dp"
+            android:layout_height="90dp"
             android:textSize="25sp"
             android:textStyle="bold"
+            android:drawableStart="@drawable/houseicon"
+            android:padding="15dp"
             android:textColor="@color/black"
-            android:background="@drawable/border"
-            android:backgroundTint="#80D9FB"
-            android:text="보금자리 찾기 매칭 결과" />
-        <Button
-            android:id="@+id/manager_button3"
-            android:layout_marginTop="35dp"
-            android:layout_width="300dp"
-            android:layout_height="75dp"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:background="@drawable/border"
-            android:backgroundTint="#80D9FB"
-            android:text="일반신고 " />
-        <Button
-            android:id="@+id/manager_button4"
-            android:layout_marginTop="35dp"
-            android:layout_width="300dp"
-            android:layout_height="75dp"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:background="@drawable/border"
-            android:backgroundTint="#80D9FB"
-            android:text="긴급신고 " />
+            android:background="@drawable/border_bold"
+            android:backgroundTint="#FFE070"
+            android:text="보금자리 매칭 결과" />
+
     </LinearLayout>
+    <Button
+        android:id="@+id/logoutManagerButton"
+        android:layout_marginBottom="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        android:text="로그아웃" />
 
 </LinearLayout>

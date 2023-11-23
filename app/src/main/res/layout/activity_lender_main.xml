@@ -22,7 +22,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/user"
+            app:srcCompat="@drawable/my2"
             android:background="@color/white"/>
 
         <LinearLayout
@@ -37,11 +37,13 @@
                 android:id="@+id/lenderMainNestSubmit"
                 android:layout_width="340dp"
                 android:layout_height="95dp"
-                android:textSize="25sp"
+                android:textSize="27dp"
                 android:textStyle="bold"
+                android:drawableStart="@drawable/houseicon"
+                android:padding="30dp"
                 android:textColor="@color/black"
                 android:background="@drawable/border_bold"
-                android:backgroundTint="#80D9FB"
+                android:backgroundTint="#FFE070"
                 android:text="보금자리 등록" />
 
             <Button
@@ -49,11 +51,13 @@
                 android:layout_width="340dp"
                 android:layout_height="95dp"
                 android:layout_marginTop="40dp"
-                android:textSize="25sp"
+                android:textSize="27sp"
+                android:drawableStart="@drawable/megaicon"
+                android:padding="30dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:background="@drawable/border_bold"
-                android:backgroundTint="#80D9FB"
+                android:backgroundTint="#FFE070"
                 android:text="일반신고" />
 
             <Button
@@ -61,12 +65,14 @@
                 android:layout_width="340dp"
                 android:layout_height="95dp"
                 android:layout_marginTop="40dp"
-                android:textSize="25sp"
+                android:textSize="27sp"
+                android:drawableStart="@drawable/sirenicon"
+                android:padding="30dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:background="@drawable/border_bold"
                 android:layout_marginBottom="50dp"
-                android:backgroundTint="#80D9FB"
+                android:backgroundTint="#FFE070"
                 android:text="긴급신고" />
 
         </LinearLayout>
@@ -81,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
-            app:itemBackground="@color/white"
+            app:itemBackground="@color/gugugu"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/lender_bottom_menu" />
     </LinearLayout>

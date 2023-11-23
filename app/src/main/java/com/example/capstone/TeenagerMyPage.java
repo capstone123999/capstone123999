@@ -33,14 +33,26 @@ import static android.content.ContentValues.TAG;
 
 public class TeenagerMyPage extends AppCompatActivity {
 
-    Button deleteButton,accountButton;
+    Button deleteButton,accountButton, logoutTeenagerButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teenager_mypage);
 
         deleteButton = findViewById(R.id.deleteButton);
+        logoutTeenagerButton = findViewById(R.id.logoutTeenagerButton);
         accountButton = findViewById(R.id.accountButton);
+
+        logoutTeenagerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

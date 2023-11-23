@@ -1,8 +1,9 @@
 package com.example.capstone;
-
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -251,11 +254,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private void addMarker(double latitude, double longitude, String title) {
         LatLng position = new LatLng(latitude, longitude);
+        Bitmap markerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.custom_marker); // 사용자가 원하는 이미지 리소스로 변경
+        Bitmap resizedMarkerBitmap = resizeMarkerBitmap(markerBitmap, 150, 150); // 원하는 크기로 조정
+        BitmapDescriptor markerIcon = BitmapDescriptorFactory.fromBitmap(resizedMarkerBitmap);
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(position)
-                .title(title);
+                .title(title)
+                .icon(markerIcon);
         googleMap.addMarker(markerOptions);
     }
+
+    private Bitmap resizeMarkerBitmap(Bitmap bitmap, int width, int height) {
+        return Bitmap.createScaledBitmap(bitmap, width, height, false);
+    }
+
 
     private void requestLocationPermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {

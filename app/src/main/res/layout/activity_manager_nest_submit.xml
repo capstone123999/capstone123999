@@ -33,20 +33,26 @@
             android:id="@+id/manager_next_submit_address_result"
             android:layout_width="match_parent"
             android:background="@drawable/border"
+            android:text="12월 개발 예정입니다."
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="30dp"
             android:layout_height="500px" />
 
     </LinearLayout>
 
 
     <Button
-        android:id="@+id/joinRegisterButton"
+        android:id="@+id/submitNestManagerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="OK"
         android:textColor="@color/black"
+        android:background="@drawable/border"
         android:textSize="25dp"
-        android:background="#80D9FB"
+        android:backgroundTint="#FFE070"
         android:textStyle="bold" />
 
 </LinearLayout>

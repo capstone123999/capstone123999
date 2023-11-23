@@ -38,6 +38,7 @@
         android:layout_height="42dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/spinner_border_round"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,9 +47,10 @@
         android:layout_marginTop="50dp"
         android:id="@+id/nestFindRegisterButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:textStyle="bold"
-        android:background="#80D9FB"
+        android:backgroundTint="#FFE070"
+        android:background="@drawable/border"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:text="OK" />

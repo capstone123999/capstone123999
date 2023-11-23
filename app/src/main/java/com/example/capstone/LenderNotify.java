@@ -62,7 +62,7 @@ public class LenderNotify extends AppCompatActivity {
                         // 일반신고 메뉴 아이템 클릭 시 처리할 로직 작성
                         Intent notifyIntent = new Intent(LenderNotify.this, LenderNotify.class);
                         startActivity(notifyIntent);
-                        item.setChecked(false);
+                        item.setChecked(true);
                         return true;
                     case R.id.action_Emergency:
                         // 긴급신고 메뉴 아이템 클릭 시 처리할 로직 작성
@@ -71,7 +71,7 @@ public class LenderNotify extends AppCompatActivity {
                         item.setChecked(false);
                         return true;
                 }
-                return false;
+                return true;
             }
         });
 

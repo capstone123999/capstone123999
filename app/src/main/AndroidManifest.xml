@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".FindNestResult" />
+        <activity android:name=".passwdFindActivity" />
         <activity android:name=".AccountInfoActivity" />
         <activity android:name=".JoinActivity" />
         <activity android:name=".UserChoiceInformation" />

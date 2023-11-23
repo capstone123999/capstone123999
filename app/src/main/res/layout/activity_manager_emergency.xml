@@ -43,9 +43,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:backgroundTint="#FFE070"
+        android:background="@drawable/border"
         android:textColor="@color/black"
         android:textSize="25dp"
-        android:background="#80D9FB"
         android:text="OK" />
 
 </LinearLayout>
