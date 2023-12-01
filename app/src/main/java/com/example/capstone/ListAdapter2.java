@@ -11,35 +11,34 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+public class ListAdapter2 extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
+    private ArrayList<ListLayout2> itemList;
+    private OnItemClickListener listener;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    private ArrayList<ListLayout> itemList;
-    private ListAdapter.OnItemClickListener listener;
-
-    public ListAdapter(ArrayList<ListLayout> itemList) {
+    public ListAdapter2(ArrayList<ListLayout2> itemList) {
         this.itemList = itemList;
     }
 
     public interface OnItemClickListener {
-        void onItemClick(ListLayout item);
+        void onItemClick(ListLayout2 item);
     }
 
-    public void setOnItemClickListener(ListAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         View view = LayoutInflater.from(context).inflate(R.layout.custom_listview, parent, false);
-        return new ViewHolder(view);
+        return new ListAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.lenderNotifyText.setText(itemList.get(position).getLenderNotifyText());
-        holder.lenderNotifyTitle.setText(itemList.get(position).getLenderNotifyTitle());
+    public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int position) {
+        holder.lenderNotifyText.setText(itemList.get(position).getNestInfo());
+        holder.lenderNotifyTitle.setText(itemList.get(position).getNestInfoTitle());
 
         holder.itemView.setOnClickListener(view -> {
             if (listener != null) {
@@ -54,13 +53,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView lenderNotifyText;
-        TextView lenderNotifyTitle;
+        TextView getNestInfo;
+        TextView getNestInfoTitle;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            lenderNotifyTitle = itemView.findViewById(R.id.title);
-            lenderNotifyText = itemView.findViewById(R.id.body_1);
+            getNestInfoTitle = itemView.findViewById(R.id.title);
+            getNestInfo = itemView.findViewById(R.id.body_1);
         }
     }
 }

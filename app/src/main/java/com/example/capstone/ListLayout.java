@@ -1,12 +1,17 @@
 package com.example.capstone;
 
-public class ListLayout {
-    private String lenderNotifyText;
-    private String lenderNotifyTitle;
+import com.google.firebase.firestore.DocumentSnapshot;
 
-    public ListLayout(String lenderNotifyText, String lenderNotifyTitle) {
+public class ListLayout {
+    private String lenderNotifyText, lenderNotifyTitle;
+    private DocumentSnapshot documentSnapshot;
+
+
+    //lenderNotify
+    public ListLayout(String lenderNotifyText, String lenderNotifyTitle, DocumentSnapshot documentSnapshot) {
         this.lenderNotifyText = lenderNotifyText;
         this.lenderNotifyTitle = lenderNotifyTitle;
+        this.documentSnapshot = documentSnapshot;
     }
 
     public String getLenderNotifyText() {
@@ -17,12 +22,9 @@ public class ListLayout {
         return lenderNotifyTitle;
     }
 
-    // If needed, you can also add setters for the fields
-    public void setLenderNotifyText(String lenderNotifyText) {
-        this.lenderNotifyText = lenderNotifyText;
+    public DocumentSnapshot getDocumentSnapshotListLayout() {
+        return documentSnapshot;
     }
 
-    public void setLenderNotifyTitle(String lenderNotifyTitle) {
-        this.lenderNotifyTitle = lenderNotifyTitle;
-    }
+
 }
