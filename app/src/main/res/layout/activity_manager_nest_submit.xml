@@ -25,20 +25,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/manager_next_submit_address_result"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/submitNest_info"
             android:layout_width="match_parent"
-            android:background="@drawable/border"
-            android:text="12월 개발 예정입니다."
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:layout_height="500px" />
+            android:layout_height="550dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notify_info_lender_title"/>
 
     </LinearLayout>
 
@@ -47,7 +45,7 @@
         android:id="@+id/submitNestManagerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:text="OK"
         android:textColor="@color/black"
         android:background="@drawable/border"

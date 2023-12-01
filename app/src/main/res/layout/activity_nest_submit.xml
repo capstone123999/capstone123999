@@ -142,6 +142,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_width="250dp"
                 android:layout_height="33dp"
+                android:inputType="number"
                 android:background="@drawable/border"
                 android:hint="평수를 숫자로만 입력해주세요"
                 android:textAlignment="center" />

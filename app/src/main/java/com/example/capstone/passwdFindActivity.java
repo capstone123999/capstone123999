@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,6 +68,7 @@ public class passwdFindActivity extends AppCompatActivity {
                                             rePasswordResult.setText(pw3);
                                         }
                                     } else {
+                                        Toast.makeText(passwdFindActivity.this, "존재하지 않는 아이디입니다.", Toast.LENGTH_SHORT).show();
                                         Log.w(TAG, "Error getting documents.", task.getException());
                                     }
                                 }

@@ -46,7 +46,6 @@
             android:layout_width="105dp"
             android:layout_gravity="center"
             android:layout_height="33dp"
-            android:maxLength="3"
             android:hint="성명"
             android:textAlignment="center" />
 
@@ -254,9 +253,50 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="370dp"
+        android:padding="7dp"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/joinPwCheckText"
+            android:layout_marginLeft="10dp"
+            android:layout_width="50dp"
+            android:gravity="center"
+            android:layout_height="35dp"
+            android:textAlignment="center"
+            android:text="확인"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/joinPwCheck"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/border"
+            android:layout_gravity="center"
+            android:layout_width="250dp"
+            android:layout_height="32dp"
+            android:hint="비밀번호를 입력해주세요"
+            android:maxLength="10"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="150dp"
+        android:id="@+id/joinPwCheckResult"
+        android:layout_marginTop="2dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_height="32dp"/>
+
 
     <Button
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/joinRegisterButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -264,7 +304,7 @@
         android:textColor="@color/black"
         android:background="#FFE070"
         android:textSize="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:text="OK" />
 
 </LinearLayout>

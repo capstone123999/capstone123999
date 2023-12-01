@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.AsyncTask;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +21,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -43,7 +46,9 @@ public class JoinActivity extends AppCompatActivity {
     public static String login_ID;
     public static String login_pw;
 
-    EditText name, num1, num2, number, joinId, joinPw;
+    TextView joinPwCheckResult;
+
+    EditText name, num1, num2, number, joinId, joinPw, joinPwCheck;
     Button numberButton, joinRegisterButton;
 
     @Override
@@ -58,14 +63,36 @@ public class JoinActivity extends AppCompatActivity {
         number = findViewById(R.id.number);
         joinId = findViewById(R.id.joinId);
         joinPw = findViewById(R.id.joinPw);
+        joinPwCheck = findViewById(R.id.joinPwCheck);
+        joinPwCheckResult = findViewById(R.id.joinPwCheckResult);
 
         numberButton = findViewById(R.id.numberButton);
         joinRegisterButton = findViewById(R.id.joinRegisterButton);
 
         genderChoice = findViewById(R.id.genderChoice);
 
+        joinPw.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        joinPwCheck.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
+        joinPwCheck.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String enteredPassword = joinPw.getText().toString();
+                    String confirmedPassword = joinPwCheck.getText().toString();
 
+                    if (enteredPassword.equals(confirmedPassword)) {
+                        joinPwCheckResult.setText("일치합니다.");
+                    } else {
+                        joinPwCheckResult.setText("일치하지 않습니다.");
+                    }
+                }
+            }
+        });
+
+        name.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(3) // 글자 제한 수를 3으로 설정
+        });
 
         numberButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +171,14 @@ public class JoinActivity extends AppCompatActivity {
 
                 if (login_pw.isEmpty()) {
                     Toast.makeText(JoinActivity.this, "비밀번호를 공백없이 입력해주세요", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String enteredPassword = joinPw.getText().toString();
+                String confirmedPassword = joinPwCheck.getText().toString();
+
+                if (!enteredPassword.equals(confirmedPassword)) {
+                    Toast.makeText(JoinActivity.this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //정보 db에 저장

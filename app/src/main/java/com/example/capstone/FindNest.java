@@ -91,6 +91,7 @@ public class FindNest extends AppCompatActivity {
                     .whereEqualTo("id", findNestUserId)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {

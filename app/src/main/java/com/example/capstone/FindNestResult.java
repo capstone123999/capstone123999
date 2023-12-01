@@ -55,6 +55,7 @@ public class FindNestResult extends AppCompatActivity {
                 CollectionReference findNestCollection = db.collection("findNest");
                 CollectionReference submitNestCollection = db.collection("submitNest");
 
+
                 findNestCollection.get().addOnCompleteListener(findNestTask -> {
                     if (findNestTask.isSuccessful()) {
                         for (QueryDocumentSnapshot findNestDocument : findNestTask.getResult()) {
@@ -98,7 +99,7 @@ public class FindNestResult extends AppCompatActivity {
                                                         }
                                                     })
                                                     .show();
-                                        } else if (Integer.parseInt(rentalPeriodNumeric) < Integer.parseInt(residentPeriodNumeric)) {
+                                        } else if (Integer.parseInt(rentalPeriodNumeric) <= Integer.parseInt(residentPeriodNumeric)) {
                                             // 그래도 거주하시겠습니까 팝업창 띄우기
                                             AlertDialog.Builder builder = new AlertDialog.Builder(FindNestResult.this);
                                             builder.setTitle("")
