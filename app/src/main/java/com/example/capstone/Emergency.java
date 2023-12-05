@@ -18,15 +18,8 @@ public class Emergency extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         String phoneNumber = "112"; // 실제로 전화 걸 번호 입력
-
-        Intent intent = new Intent(Intent.ACTION_CALL);
+        Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + phoneNumber));
-
-        if (ActivityCompat.checkSelfPermission(Emergency.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            // 권한 체크 및 요청
-            ActivityCompat.requestPermissions(Emergency.this, new String[]{Manifest.permission.CALL_PHONE}, 1);
-            return;
-        }
 
         startActivity(intent);
         finish(); // Emergency 액티비티를 종료합니다.

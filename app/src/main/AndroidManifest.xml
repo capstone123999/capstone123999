@@ -12,12 +12,12 @@
         android:theme="@style/Theme.Capstone"
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -36,11 +36,10 @@
         <activity android:name=".ManagerNestSubmitActivity" />
         <activity
             android:name=".ManagerNotify"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ManagerNotifyLender"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".ManagerNotifyTeenager"
             android:exported="false" />
@@ -49,11 +48,10 @@
         <activity android:name=".LenderNotify" />
         <activity
             android:name=".SubmitNest"
-            android:exported="true" >
-        </activity>
+            android:exported="true"></activity>
         <activity android:name=".TeenagerMainActivity" />
         <activity android:name=".TeenagerNotify" />
-        <activity android:name=".TeenagerMyPage"/>
+        <activity android:name=".TeenagerMyPage" />
 
         <meta-data
             android:name="com.kakao.vectormap.APP_KEY"
