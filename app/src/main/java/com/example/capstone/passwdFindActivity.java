@@ -68,7 +68,7 @@ public class passwdFindActivity extends AppCompatActivity {
                                             rePasswordResult.setText(pw3);
                                         }
                                     } else {
-                                        Toast.makeText(passwdFindActivity.this, "존재하지 않는 아이디입니다.", Toast.LENGTH_SHORT).show();
+                                        // 화면에 회원가입 정보를 보여줌
                                         Log.w(TAG, "Error getting documents.", task.getException());
                                     }
                                 }
